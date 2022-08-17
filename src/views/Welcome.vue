@@ -1,9 +1,11 @@
 <template>
   <main class="welcome">
-    <section class="text">
-      <h1 class="text-title">Cooking Experience Like a Chef!</h1>
-      <p class="text-description">Lets make a delicious dish with the best recipe for the family</p>
-      <router-link class="text-go" to="/Home" tag="button">Lets Go!</router-link>
+    <section class="content">
+      <h1 class="content-title">Cooking Experience Like a Chef!</h1>
+      <p class="content-description">
+        Lets make a delicious dish with the best recipe for the family
+      </p>
+      <router-link class="content-btn" to="/Home" tag="button">Lets Go!</router-link>
     </section>
   </main>
 </template>
@@ -12,7 +14,7 @@ export default {
   name: 'Welcome',
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .welcome {
   width: 100%;
   min-height: 100vh;
@@ -26,7 +28,7 @@ export default {
   justify-content: center;
   align-items: center;
 
-  .text {
+  .content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,23 +37,23 @@ export default {
     text-align: center;
     font-size: 22px;
 
-    .text-title {
+    .content-title {
       margin: 0 0 30px 0;
       line-height: 180%;
     }
 
-    .text-description {
+    .content-description {
       margin: 0 0 60px 0;
     }
 
-    .text-go {
+    .content-btn {
       border: none;
       outline: none;
       width: 60%;
       height: 70px;
       border-radius: 100px;
       border: 4px solid white;
-      background-color: rgb(85, 215, 121);
+      background: rgb(85, 215, 121);
       font-weight: bold;
       font-size: 28px;
       display: flex;
