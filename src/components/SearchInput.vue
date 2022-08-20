@@ -1,11 +1,14 @@
 <template>
-  <form class="search">
+  <form class="search" @submit.prevent>
     <label class="search-icon" for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
-    <input class="search-input" type="text" placeholder="Search Your Dish" name="search" />
+    <input class="search-input" type="text" placeholder="Search Your Dish" name="search"
+    :value="search" @change="$emit('update:search', $event.target.value)" />
   </form>
 </template>
 <script>
 export default {
+  props: ['search'],
+  emits: ['update:search'],
   name: 'SearchInput',
 };
 </script>
