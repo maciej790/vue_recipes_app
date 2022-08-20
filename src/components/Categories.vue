@@ -20,13 +20,15 @@ import { ref } from 'vue';
 export default {
   name: 'Categories',
 
-  setup() {
+  setup(props, { emit }) {
     const activeIndex = ref(null);
 
     const categories = ['breakfast', 'soup', 'dessert', 'fingerfood', 'drink'];
 
     const handleButtonClick = (index) => {
       activeIndex.value = index;
+      const category = categories[index];
+      emit('searchByCategory', category);
     };
 
     return {
