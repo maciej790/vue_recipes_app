@@ -3,7 +3,7 @@
     <img class="card-img" :src="recipe.image" alt="slide" />
     <div class="card-description">
       <p class="card-title">{{ recipe.title }}</p>
-      <p class="card-info">
+      <p class="card-info" v-if="recipe.readyInMinutes">
         {{ `Done in ${recipe.readyInMinutes} minutes` }}
       </p>
     </div>
@@ -15,13 +15,16 @@ export default {
   props: ['recipe'],
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .card {
   width: 100%;
   height: 300px;
   background: black;
   overflow: hidden;
   border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 
   .card-img {
     width: 100%;
@@ -34,10 +37,10 @@ export default {
 
   .card-description {
     position: absolute;
-    bottom: 30px;
-    left: 30px;
     color: white;
     text-align: left;
+    width: 100%;
+    padding: 30px;
 
     .card-title {
       font-weight: bold;

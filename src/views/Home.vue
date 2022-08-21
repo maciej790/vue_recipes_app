@@ -3,14 +3,12 @@
     <h1 class="home-title">Find Your Recipe!</h1>
     <SearchInput v-model:search="inputValue" />
     <Categories @searchByCategory="searchByCategory" />
-    <PopularRecipes />
-    <p v-if="recipes && !isError && !isLoading">
-      <ul v-for="item in recipes" :key="item">
-        <li>{{item.title}}</li>
-      </ul>
-    </p>
-    <p v-if="isLoading">LOADING...</p>
-    <p v-else-if="isError">ERROR!</p>
+    <PopularRecipes v-if="!recipes.length" />
+    <Loading v-if="isLoading" />
+    <Error v-else-if="isError" />
+    <transition name="fade">
+      <Results v-if="recipes.length && !isError && !isLoading" :recipes="recipes" />
+    </transition>
   </main>
 </template>
 <script>
@@ -19,6 +17,9 @@ import SearchInput from '../components/SearchInput.vue';
 import Categories from '../components/Categories.vue';
 import PopularRecipes from '../components/PopularRecipes.vue';
 import useSearchRecipes from '../composables/useSearchRecipes';
+import Results from '../components/Results.vue';
+import Loading from '../components/Loading.vue';
+import Error from '../components/Error.vue';
 
 export default {
   name: 'Home',
@@ -26,6 +27,9 @@ export default {
     SearchInput,
     Categories,
     PopularRecipes,
+    Results,
+    Loading,
+    Error,
   },
 
   setup() {
@@ -53,6 +57,15 @@ export default {
 };
 </script>
 <style lang="scss">
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 .wrapper {
   width: 100%;
   min-height: 100vh;

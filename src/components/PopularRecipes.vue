@@ -50,7 +50,7 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .popular {
   margin: 50px 0 0 0;
   width: 100%;

@@ -63,7 +63,7 @@ export default {
         color: rgb(180, 173, 173);
         width: 100px;
         height: 60px;
-        border-radius: 20px;
+        border-radius: 15px;
         cursor: pointer;
         box-shadow: 2px 2px 8px -4px rgba(66, 68, 90, 1);
 

@@ -1,28 +1,28 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
-import Welcome from '../views/Welcome.vue';
-import Home from '../views/Home.vue';
-import RecipeItem from '../views/RecipeItem.vue';
-import CreateRecipe from '../views/CreateRecipe.vue';
+import { createRouter, createWebHashHistory } from "vue-router";
+import Welcome from "../views/Welcome.vue";
+import Home from "../views/Home.vue";
+import RecipeItem from "../views/RecipeItem.vue";
+import CreateRecipe from "../views/CreateRecipe.vue";
 
 const routes = [
   {
-    path: '/',
-    name: 'Welcome',
+    path: "/",
+    name: "Welcome",
     component: Welcome,
   },
   {
-    path: '/Home',
-    name: 'Home',
+    path: "/Home",
+    name: "Home",
     component: Home,
   },
   {
-    path: '/Item',
-    name: 'RecipeItem',
+    path: "/Item",
+    name: "RecipeItem",
     component: RecipeItem,
   },
   {
-    path: '/Create',
-    name: 'CreateRecipe',
+    path: "/Create",
+    name: "CreateRecipe",
     component: CreateRecipe,
   },
 ];
