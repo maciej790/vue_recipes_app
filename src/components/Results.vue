@@ -1,6 +1,6 @@
 <template>
   <section class="results">
-    <RecipeCard v-for="item in recipes" :key="item" :recipe="item" />
+    <RecipeCard v-for="recipe in recipes" :key="recipe.id" :recipe="recipe" />
   </section>
 </template>
 <script>

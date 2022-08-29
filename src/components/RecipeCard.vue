@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" @click="$router.push({ name: 'RecipeItem', params: { id: recipe.id } })">
     <img class="card-img" :src="recipe.image" alt="slide" />
     <div class="card-description">
       <p class="card-title">{{ recipe.title }}</p>

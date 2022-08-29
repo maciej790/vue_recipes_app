@@ -34,7 +34,7 @@ export default {
 
   setup() {
     const inputValue = ref('');
-    const baseUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.VUE_APP_KEY}`;
+    const baseUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.VUE_APP_KEY}&number=30`;
     const { results, getRecipes } = useSearchRecipes();
 
     watch(inputValue, () => {

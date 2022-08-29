@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="wrapper">
     <h1>RecipeItem</h1>
+    {{$route.params.id}}
   </div>
 </template>
 <script>
