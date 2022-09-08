@@ -1,18 +1,19 @@
 <template>
   <section class="popular">
     <h2 class="popular-title">Popular Recipes:</h2>
-    <Splide :options="options" v-if="recipes">
-      <SplideSlide v-for="recipe in recipes" :key="recipe.id">
+    <Splide :options="options" v-if="recipes.recipes">
+      <SplideSlide v-for="recipe in recipes.recipes" :key="recipe.id">
         <RecipeCard :recipe="recipe" />
       </SplideSlide>
     </Splide>
   </section>
 </template>
 <script>
+import { toRefs } from 'vue';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import '@splidejs/splide/dist/css/splide.min.css';
-import usePopularRecipes from '../composables/usePopularRecipes';
+import useRecipes from '../composables/useRecipes';
 import RecipeCard from './RecipeCard.vue';
 
 export default {
@@ -24,7 +25,11 @@ export default {
   },
 
   setup() {
-    const { recipes } = usePopularRecipes();
+    const { results, getRecipeData } = useRecipes();
+
+    const url = `https://api.spoonacular.com/recipes/random?apiKey=${process.env.VUE_APP_KEY}&number=9`;
+
+    getRecipeData(url);
 
     const options = {
       perPage: 4,
@@ -44,7 +49,8 @@ export default {
     };
 
     return {
-      recipes,
+      ...toRefs(results),
+      getRecipeData,
       options,
     };
   },

@@ -1,13 +1,13 @@
 import { reactive } from 'vue';
 
-const useSearchRecipes = () => {
+const useRecipes = () => {
   const results = reactive({
     recipes: {},
     isError: false,
     isLoading: false,
   });
 
-  const getRecipes = async (url) => {
+  const getRecipeData = async (url) => {
     results.isLoading = true;
 
     try {
@@ -17,7 +17,7 @@ const useSearchRecipes = () => {
         throw new Error();
       }
       results.isError = false;
-      results.recipes = data.results;
+      results.recipes = data;
     } catch {
       results.isError = true;
     } finally {
@@ -26,9 +26,9 @@ const useSearchRecipes = () => {
   };
 
   return {
-    getRecipes,
     results,
+    getRecipeData,
   };
 };
 
-export default useSearchRecipes;
+export default useRecipes;

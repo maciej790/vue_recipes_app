@@ -3,11 +3,11 @@
     <h1 class="home-title">Find Your Recipe!</h1>
     <SearchInput v-model:search="inputValue" />
     <Categories @searchByCategory="searchByCategory" />
-    <PopularRecipes v-if="!recipes.length" />
+    <PopularRecipes v-if="!recipes.results" />
     <Loading v-if="isLoading" />
     <Error v-else-if="isError" />
     <transition name="fade">
-      <Results v-if="recipes.length && !isError && !isLoading" :recipes="recipes" />
+      <Results v-if="recipes.results && !isError && !isLoading" :recipes="recipes.results" />
     </transition>
   </main>
 </template>
@@ -16,7 +16,7 @@ import { ref, watch, toRefs } from 'vue';
 import SearchInput from '../components/SearchInput.vue';
 import Categories from '../components/Categories.vue';
 import PopularRecipes from '../components/PopularRecipes.vue';
-import useSearchRecipes from '../composables/useSearchRecipes';
+import useRecipes from '../composables/useRecipes';
 import Results from '../components/Results.vue';
 import Loading from '../components/Loading.vue';
 import Error from '../components/Error.vue';
@@ -35,22 +35,23 @@ export default {
   setup() {
     const inputValue = ref('');
     const baseUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.VUE_APP_KEY}&number=30`;
-    const { results, getRecipes } = useSearchRecipes();
+    const { results, getRecipeData } = useRecipes();
 
     watch(inputValue, () => {
       const url = `${baseUrl}&query=${inputValue.value}`;
-      getRecipes(url);
+      getRecipeData(url);
     });
 
     const searchByCategory = (category) => {
       const url = `${baseUrl}&type=${category}`;
-      getRecipes(url);
+      getRecipeData(url);
     };
 
     return {
       inputValue,
       ...toRefs(results),
-      getRecipes,
+      results,
+      getRecipeData,
       searchByCategory,
     };
   },
