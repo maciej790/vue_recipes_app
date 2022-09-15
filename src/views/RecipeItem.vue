@@ -1,38 +1,44 @@
 <template>
   <div class="wrapper">
     <GoBackArrow />
-    {{$route.params.id}}
-    <RecipeImage />
+    <h2 class="title">{{recipes.title}}</h2>
+    <RecipeImage :image="recipes.image"/>
+    <RecipeButtons />
   </div>
 </template>
 <script>
-// import { useRoute } from 'vue-router';
+import { toRefs } from 'vue';
+import { useRoute } from 'vue-router';
 import RecipeImage from '../components/RecipeImage.vue';
 import GoBackArrow from '../components/GoBackArrow.vue';
-// import useSearchRecipes from '../composables/useSearchRecipes';
+import useRecipes from '../composables/useRecipes';
+import RecipeButtons from '../components/RecipeButtons.vue';
 
 export default {
   name: 'RecipeItem',
-  components: { RecipeImage, GoBackArrow },
+  components: { RecipeImage, GoBackArrow, RecipeButtons },
 
-  // setup() {
-  //   const route = useRoute();
+  setup() {
+    const route = useRoute();
 
-  //   const { results, getRecipes } = useSearchRecipes();
+    const { results, getRecipeData } = useRecipes();
 
-  //   const url = `https://api.spoonacular.com/recipes/${route.params.id}/information?apiKey=${process.env.VUE_APP_KEY}`;
+    const url = `https://api.spoonacular.com/recipes/${route.params.id}/information?apiKey=${process.env.VUE_APP_KEY}`;
 
-  //   getRecipes(url);
+    getRecipeData(url);
 
-  //   return {
-  //     results,
-  //     getRecipes,
-  //   };
-  // },
+    return {
+      ...toRefs(results),
+      getRecipeData,
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>
   .wrapper{
-
+    .title{
+      text-align: center;
+      margin: 20px 0 0 0;
+    }
   }
 </style>

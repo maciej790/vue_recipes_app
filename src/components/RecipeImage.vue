@@ -1,16 +1,17 @@
 <template>
   <div class="image">
-    <img src="../assets/pizza.jpg" alt="" />
+    <img :src="image" alt="" />
   </div>
 </template>
 <script>
 export default {
   name: 'RecipeImage',
+  props: ['image'],
 };
 </script>
 <style lang="scss">
 .image {
-  width: 80%;
+  width: 90%;
   height: 500px;
   margin: 50px 0 0 0;
 

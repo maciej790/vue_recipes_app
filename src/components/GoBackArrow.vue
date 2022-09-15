@@ -11,14 +11,13 @@ export default {
 <style lang="scss">
 .back {
   width: 100%;
-  margin: 0 0 0 20px;
-
   i {
     background: rgb(85, 215, 121);
     color: white;
     width: 70px;
     padding: 5px;
     border-radius: 100px;
+    margin: 0 0 0 20px;
   }
 }
 </style>
