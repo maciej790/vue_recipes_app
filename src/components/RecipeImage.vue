@@ -1,6 +1,6 @@
 <template>
   <div class="image">
-    <img :src="image" alt="" />
+    <img :src="image" alt="recipe item image" />
   </div>
 </template>
 <script>
@@ -12,7 +12,7 @@ export default {
 <style lang="scss">
 .image {
   width: 90%;
-  height: 500px;
+  height: 350px;
   margin: 50px 0 0 0;
 
   img {
